@@ -12,6 +12,7 @@ function Search() {
     const [searchValue, setSearchValue] = useState('');
     const [searchResult, setSearchResult] = useState([]);
     const [showResult, setShowResult] = useState(true);
+    const [loading, setLoading] = useState(false);
 
     const inputRef = useRef();
     const handleClear = () => {
@@ -30,14 +31,20 @@ function Search() {
         // nếu giá trị gõ vào ô input là dấu cách cách thì không tìm kiếm:.trim()
         // nếu không gõ vào ô input thì dữ liệu là chuỗi rỗng thì k tìm kiếm
         if (!searchValue.trim()) {
+            setSearchResult([]);
             return;
         }
+        setLoading(true);
         // gọi api để lấy dữ liệu mỗi khi giá trị của searchValue thay đổi
         // dùng encodeURIComponent để mã hóa khi người dùng nhập ký tự như: ? =
         fetch(` https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValue)}&type=less`)
             .then((res) => res.json())
             .then((res) => {
                 setSearchResult(res.data);
+                setLoading(false);
+            })
+            .catch(() => {
+                setLoading(false);
             });
     }, [searchValue]);
     return (
@@ -72,13 +79,14 @@ function Search() {
                 />
                 {
                     // khi có search mới hiển thị button clear
-                    !!searchValue && (
+                    !!searchValue && !loading && (
                         <button className={cx('clear')} onClick={handleClear}>
                             <FontAwesomeIcon icon={faCircleXmark} />
                         </button>
                     )
                 }
-                {/* <FontAwesomeIcon className={cx('loading')} icon={faSpinner} /> */}
+                {/* nếu loading bằng true thì icon quay */}
+                {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
 
                 <button className={cx('search-btn')}>
                     <FontAwesomeIcon icon={faMagnifyingGlass} />
