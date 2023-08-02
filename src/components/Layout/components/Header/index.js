@@ -1,10 +1,6 @@
-import { useState, useEffect } from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-    faCircleXmark,
-    faSpinner,
-    faMagnifyingGlass,
     faEllipsisVertical,
     faEarthAsia,
     faCircleQuestion,
@@ -14,18 +10,17 @@ import {
     faSignOut,
 } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react';
-import HeadlessTippy from '@tippyjs/react/headless';
+
 import 'tippy.js/dist/tippy.css';
 
 import Button from '~/components/Button';
-import { Wrapper as PopperWrapper } from '~/components/Popper';
 import styles from './Header.module.scss';
 import images from '~/assets/images';
-import AccountItem from '~/components/AccountItem';
 import Menu from '~/components/Popper/Menu';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { UploadIcon, InboxIcon, MessageIcon } from '~/components/icons';
-import Image from '~/components/Image'
+import Image from '~/components/Image';
+import Search from '../Search';
 
 const cx = classNames.bind(styles);
 
@@ -59,15 +54,7 @@ const MENU_ITEMS = [
 ];
 
 function Header() {
-    const [searchResult, setSearchResult] = useState([]);
-
     const currentUser = true;
-
-    useEffect(() => {
-        setTimeout(() => {
-            setSearchResult([]);
-        });
-    }, []);
 
     // handle logic
     const handleMenuChange = (menuItem) => {
@@ -106,35 +93,7 @@ function Header() {
                 <img src={images.logo} alt="Tiktok"></img>
 
                 {/* ô tìm kiếm chính giữa */}
-                <HeadlessTippy
-                    interactive
-                    visible={searchResult.length > 0}
-                    render={(attrs) => (
-                        <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                            <PopperWrapper>
-                                <h4 className={cx('search-title')}>Accounts</h4>
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                            </PopperWrapper>
-                        </div>
-                    )}
-                >
-                    <div className={cx('search')}>
-                        <input placeholder="Search accounts and videos" spellCheck={false} />
-                        <button className={cx('clear')}>
-                            <FontAwesomeIcon icon={faCircleXmark} />
-                        </button>
-                        <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />
-
-                        <button className={cx('search-btn')}>
-                            <FontAwesomeIcon icon={faMagnifyingGlass} />
-                        </button>
-                    </div>
-                </HeadlessTippy>
+                <Search/>
 
                 {/* action bên phải */}
                 <div className={cx('action')}>
@@ -171,7 +130,7 @@ function Header() {
                                 src="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/42a81079b5885e152707b170d63ba2df~c5_100x100.jpeg?x-expires=1690765200&x-signature=yg9h540VDd5WMtVkaE8ItoNBeCc%3D"
                                 className={cx('user-avatar')}
                                 alt="Le hoi hà"
-                                fallback = 'https://yt3.ggpht.com/un39qiXGe7CpRxDhAq-b-LW96PBH820OS5TaxDdDSayOukP8fgYLNEtIJp8AuvxbtQUiSTYQCQ=s88-c-k-c0x00ffffff-no-rj'
+                                fallback="https://yt3.ggpht.com/un39qiXGe7CpRxDhAq-b-LW96PBH820OS5TaxDdDSayOukP8fgYLNEtIJp8AuvxbtQUiSTYQCQ=s88-c-k-c0x00ffffff-no-rj"
                             />
                         ) : (
                             <button className={cx('more-btn')}>
