@@ -27,10 +27,13 @@ function Search() {
         setShowResult(false)
     }
     useEffect(() => {
-        setTimeout(() => {
-            setSearchResult([1]);
-        });
-    }, []);
+        // gọi api để lấy dữ liệu mỗi khi giá trị của searchValue thay đổi
+       fetch(` https://tiktok.fullstack.edu.vn/api/users/search?q=h&type=less`)
+        .then((res) =>res.json() )
+        .then((res)=>{
+            setSearchResult(res.data);
+        })
+    }, [searchValue]);
     return (
         <HeadlessTippy
             interactive
@@ -41,10 +44,12 @@ function Search() {
                 <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                     <PopperWrapper>
                         <h4 className={cx('search-title')}>Accounts</h4>
-                        <AccountItem />
-                        <AccountItem />
-                        <AccountItem />
-                        <AccountItem />
+                        {/* hiển thị dữ tài khoản lấy từ api */}
+                       {
+                        searchResult.map((result) =>(
+                            <AccountItem key={result.id}  data= {result}/>
+                        ))
+                       }
                     </PopperWrapper>
                 </div>
             )}

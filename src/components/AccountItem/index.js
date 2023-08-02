@@ -1,23 +1,28 @@
-import {faCheckCircle} from '@fortawesome/free-solid-svg-icons'
-import classNames from "classnames/bind";
-import styles from './AcountItem.module.scss'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import classNames from 'classnames/bind';
+import styles from './AcountItem.module.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from '~/components/Image';
-const cx = classNames.bind(styles)
+const cx = classNames.bind(styles);
 
-
-
-function AccountItem() {
-    return ( <div className={cx('wrapper')}>
-        <Image className={cx('avatar')} src="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/42a81079b5885e152707b170d63ba2df~c5_100x100.jpeg?x-expires=1690380000&x-signature=folpPUSRDFkzMaQX08NgayhVSFE%3D" alt="hoa" />
-        <div className = {cx('info')}>
-            <h4 className= {cx('name')}>
-                <span>Le hoi ha</span>
-                <FontAwesomeIcon className={cx('check')}  icon={faCheckCircle}/>
-            </h4>
-            <span className= {cx('username')}>le hoi ha</span>
+function AccountItem({data}) {
+    return (
+        <div className={cx('wrapper')}>
+            <Image
+                className={cx('avatar')}
+                src={data.avatar}
+                alt={data.full_name}
+            />
+            <div className={cx('info')}>
+                <h4 className={cx('name')}>
+                    <span>{data.full_name}</span>
+                    {/*khi có data.tick bằng true mới hiển thị tick xanh  */}
+                {data.tick && < FontAwesomeIcon className={cx('check')} icon={faCheckCircle} />}
+                </h4>
+                <span className={cx('username')}>{data.nickname}</span>
+            </div>
         </div>
-    </div> );
+    );
 }
 
 export default AccountItem;
