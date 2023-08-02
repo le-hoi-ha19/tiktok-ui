@@ -1,3 +1,4 @@
--xây dựng logic phần header #1:
-+ tách phần search ra 1 phần riêng sau đó import lại vào header
-+xử lý logic của thanh tìm kiếm
+-giải quyết khắc phục cái khi gõ hết  vào input và dừng tầm 500 milisecond thì mới bắt đầu tìm kiếm, nếu chưa gõ xong thì không được  tìm kiếm--> dùng debounce
+
+-khi nào thì dùng debounce:
++ một chuỗi hành động xảy ra liên tục nhưng chỉ muốn thực hiện cái hành động cuối cùng

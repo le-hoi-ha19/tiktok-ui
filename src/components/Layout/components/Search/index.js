@@ -6,6 +6,7 @@ import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './Search.module.scss';
+import { useDebounce } from '~/hooks';
 
 const cx = classNames.bind(styles);
 function Search() {
@@ -14,6 +15,9 @@ function Search() {
     const [showResult, setShowResult] = useState(true);
     const [loading, setLoading] = useState(false);
 
+    // khi người dùng ngừng gõ 500 mili giây thì thì giá trị debounced này nó mới được 
+    // update bằng giá trị mới nhất của searchValue
+    const debounced = useDebounce(searchValue, 500);
     const inputRef = useRef();
     const handleClear = () => {
         // đặt lại giá trị ô input bằng chuỗi rỗng
@@ -30,14 +34,14 @@ function Search() {
     useEffect(() => {
         // nếu giá trị gõ vào ô input là dấu cách cách thì không tìm kiếm:.trim()
         // nếu không gõ vào ô input thì dữ liệu là chuỗi rỗng thì k tìm kiếm
-        if (!searchValue.trim()) {
+        if (!debounced.trim()) {
             setSearchResult([]);
             return;
         }
         setLoading(true);
         // gọi api để lấy dữ liệu mỗi khi giá trị của searchValue thay đổi
         // dùng encodeURIComponent để mã hóa khi người dùng nhập ký tự như: ? =
-        fetch(` https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValue)}&type=less`)
+        fetch(` https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounced)}&type=less`)
             .then((res) => res.json())
             .then((res) => {
                 setSearchResult(res.data);
@@ -46,7 +50,7 @@ function Search() {
             .catch(() => {
                 setLoading(false);
             });
-    }, [searchValue]);
+    }, [debounced]);
     return (
         <HeadlessTippy
             interactive
