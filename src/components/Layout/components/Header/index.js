@@ -9,7 +9,6 @@ import {
     faEarthAsia,
     faCircleQuestion,
     faKeyboard,
-    faUpload,
     faCoins,
     faGear,
     faSignOut,
@@ -25,6 +24,7 @@ import images from '~/assets/images';
 import AccountItem from '~/components/AccountItem';
 import Menu from '~/components/Popper/Menu';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
+import { UploadIcon, InboxIcon, MessageIcon } from '~/components/icons';
 
 const cx = classNames.bind(styles);
 
@@ -142,7 +142,17 @@ function Header() {
                         <>
                             <Tippy delay={[0, 200]} content="UpLoad video" placement="bottom">
                                 <button className={cx('action-btn')}>
-                                    <FontAwesomeIcon icon={faUpload} />
+                                    <UploadIcon />
+                                </button>
+                            </Tippy>
+                            <Tippy delay={[0, 200]} content="Tin nhắn" placement="bottom">
+                                <button className={cx('action-btn')}>
+                                    <MessageIcon className="thu" />
+                                </button>
+                            </Tippy>
+                            <Tippy delay={[0, 200]} content="Hộp thư" placement="bottom">
+                                <button className={cx('action-btn')}>
+                                    <InboxIcon />
                                 </button>
                             </Tippy>
                         </>
