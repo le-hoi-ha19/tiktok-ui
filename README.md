@@ -1,2 +1,2 @@
--Xây dựng UI phần Header #7.2 làm:
-+ thay Header icons: những cái icon thì nên tách nó ra và dùng thẳng vào file svg để sau này có thể dễ dàng thay đổi,sửa màu của icon
+-Xây dựng UI phần Header #7.3 làm:
++ Tạo component Image: giải quyết trường hợp ảnh nó lỗi thì nó sẽ có cái ảnh mặc định

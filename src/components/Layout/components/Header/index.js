@@ -25,6 +25,7 @@ import AccountItem from '~/components/AccountItem';
 import Menu from '~/components/Popper/Menu';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { UploadIcon, InboxIcon, MessageIcon } from '~/components/icons';
+import Image from '~/components/Image'
 
 const cx = classNames.bind(styles);
 
@@ -165,10 +166,12 @@ function Header() {
                     )}
                     <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
                         {currentUser ? (
-                            <img
+                            // Component Image
+                            <Image
                                 src="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/42a81079b5885e152707b170d63ba2df~c5_100x100.jpeg?x-expires=1690765200&x-signature=yg9h540VDd5WMtVkaE8ItoNBeCc%3D"
                                 className={cx('user-avatar')}
-                                alt=""
+                                alt="Le hoi hà"
+                                fallback = 'https://yt3.ggpht.com/un39qiXGe7CpRxDhAq-b-LW96PBH820OS5TaxDdDSayOukP8fgYLNEtIJp8AuvxbtQUiSTYQCQ=s88-c-k-c0x00ffffff-no-rj'
                             />
                         ) : (
                             <button className={cx('more-btn')}>
