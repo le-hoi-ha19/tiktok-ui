@@ -11,7 +11,7 @@ const cx = classNames.bind(styles);
 function Search() {
     const [searchValue, setSearchValue] = useState('');
     const [searchResult, setSearchResult] = useState([]);
-    const [showResult, setShowResult] = useState(true)
+    const [showResult, setShowResult] = useState(true);
 
     const inputRef = useRef();
     const handleClear = () => {
@@ -24,15 +24,21 @@ function Search() {
     };
     const handleHideResult = () => {
         // bấm ra ngoài thì ẩn hiển thị kết quả
-        setShowResult(false)
-    }
+        setShowResult(false);
+    };
     useEffect(() => {
+        // nếu giá trị gõ vào ô input là dấu cách cách thì không tìm kiếm:.trim()
+        // nếu không gõ vào ô input thì dữ liệu là chuỗi rỗng thì k tìm kiếm
+        if (!searchValue.trim()) {
+            return;
+        }
         // gọi api để lấy dữ liệu mỗi khi giá trị của searchValue thay đổi
-       fetch(` https://tiktok.fullstack.edu.vn/api/users/search?q=h&type=less`)
-        .then((res) =>res.json() )
-        .then((res)=>{
-            setSearchResult(res.data);
-        })
+        // dùng encodeURIComponent để mã hóa khi người dùng nhập ký tự như: ? =
+        fetch(` https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValue)}&type=less`)
+            .then((res) => res.json())
+            .then((res) => {
+                setSearchResult(res.data);
+            });
     }, [searchValue]);
     return (
         <HeadlessTippy
@@ -45,16 +51,14 @@ function Search() {
                     <PopperWrapper>
                         <h4 className={cx('search-title')}>Accounts</h4>
                         {/* hiển thị dữ tài khoản lấy từ api */}
-                       {
-                        searchResult.map((result) =>(
-                            <AccountItem key={result.id}  data= {result}/>
-                        ))
-                       }
+                        {searchResult.map((result) => (
+                            <AccountItem key={result.id} data={result} />
+                        ))}
                     </PopperWrapper>
                 </div>
             )}
             // khi bấm ra ngoài khu vực hiển thị kết quả tìm kiếm
-            onClickOutside ={handleHideResult}
+            onClickOutside={handleHideResult}
         >
             <div className={cx('search')}>
                 <input
@@ -64,7 +68,7 @@ function Search() {
                     spellCheck={false}
                     onChange={(e) => setSearchValue(e.target.value)}
                     // khi focus vào ô input thì hiển thị lại kết quả tìm kiếm
-                    onFocus={()=> setShowResult(true)} 
+                    onFocus={() => setShowResult(true)}
                 />
                 {
                     // khi có search mới hiển thị button clear
