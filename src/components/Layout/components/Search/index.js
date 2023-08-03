@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+
 import classNames from 'classnames/bind';
 import { faCircleXmark, faSpinner, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import HeadlessTippy from '@tippyjs/react/headless';
@@ -7,7 +8,7 @@ import AccountItem from '~/components/AccountItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './Search.module.scss';
 import { useDebounce } from '~/hooks';
-
+import * as searchServices from '~/apiServices/searchServices';
 const cx = classNames.bind(styles);
 function Search() {
     const [searchValue, setSearchValue] = useState('');
@@ -15,7 +16,7 @@ function Search() {
     const [showResult, setShowResult] = useState(true);
     const [loading, setLoading] = useState(false);
 
-    // khi người dùng ngừng gõ 500 mili giây thì thì giá trị debounced này nó mới được 
+    // khi người dùng ngừng gõ 500 mili giây thì thì giá trị debounced này nó mới được
     // update bằng giá trị mới nhất của searchValue
     const debounced = useDebounce(searchValue, 500);
     const inputRef = useRef();
@@ -38,18 +39,14 @@ function Search() {
             setSearchResult([]);
             return;
         }
-        setLoading(true);
-        // gọi api để lấy dữ liệu mỗi khi giá trị của searchValue thay đổi
-        // dùng encodeURIComponent để mã hóa khi người dùng nhập ký tự như: ? =
-        fetch(` https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounced)}&type=less`)
-            .then((res) => res.json())
-            .then((res) => {
-                setSearchResult(res.data);
-                setLoading(false);
-            })
-            .catch(() => {
-                setLoading(false);
-            });
+        // hàm gọi api để lấy dữ liêụ
+        const fetchApi = async () => {
+            setLoading(true);
+            const result = await searchServices.search(debounced);
+            setSearchResult(result);
+            setLoading(false);
+        };
+        fetchApi();
     }, [debounced]);
     return (
         <HeadlessTippy
