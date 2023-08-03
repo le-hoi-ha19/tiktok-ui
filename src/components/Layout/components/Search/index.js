@@ -48,6 +48,15 @@ function Search() {
         };
         fetchApi();
     }, [debounced]);
+
+    // hàm xử lý không cho gõ dấu cách trong ô input
+    const handleChange =(e) =>{
+        const searchValue = e.target.value;
+        if(!searchValue.startsWith(' ') ){
+            setSearchValue(e.target.value)
+        }
+        
+    }
     return (
         <HeadlessTippy
             interactive
@@ -74,7 +83,7 @@ function Search() {
                     value={searchValue}
                     placeholder="Search accounts and videos"
                     spellCheck={false}
-                    onChange={(e) => setSearchValue(e.target.value)}
+                    onChange={handleChange}
                     // khi focus vào ô input thì hiển thị lại kết quả tìm kiếm
                     onFocus={() => setShowResult(true)}
                 />
