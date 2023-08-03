@@ -18,6 +18,7 @@
         font-size: 1.6rem;
         caret-color: var(--primary);
         background-color: transparent;
+        font-family: var(--font-family);;
     }
     // khi input không có placeholder thì css cho nút search-btn
     input:not(:placeholder-shown) ~ .search-btn {
