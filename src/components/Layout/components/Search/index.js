@@ -57,6 +57,7 @@ function Search() {
         }
         
     }
+    
     return (
         <HeadlessTippy
             interactive
@@ -98,7 +99,7 @@ function Search() {
                 {/* nếu loading bằng true thì icon quay */}
                 {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
 
-                <button className={cx('search-btn')}>
+                <button className={cx('search-btn')} onMouseDown={e =>e.preventDefault()}>
                     <FontAwesomeIcon icon={faMagnifyingGlass} />
                 </button>
             </div>
