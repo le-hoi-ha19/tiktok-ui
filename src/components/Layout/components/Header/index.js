@@ -21,6 +21,8 @@ import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { UploadIcon, InboxIcon, MessageIcon } from '~/components/icons';
 import Image from '~/components/Image';
 import Search from '../Search';
+import { Link } from 'react-router-dom';
+import routesConfig from '~/config/routes';
 
 const cx = classNames.bind(styles);
 
@@ -58,7 +60,12 @@ function Header() {
 
     // handle logic
     const handleMenuChange = (menuItem) => {
-        console.log(menuItem);
+        switch (menuItem.type) {
+            case 'language':
+                // Handle change language
+                break;
+            default:
+        }
     };
     const userMenu = [
         {
@@ -90,10 +97,12 @@ function Header() {
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
                 {/* logo tiktok bên phải */}
-                <img src={images.logo} alt="Tiktok"></img>
+                <Link to={routesConfig.home} className={cx('logo-link')}>
+                    <img src={images.logo} alt="Tiktok"></img>
+                </Link>
 
                 {/* ô tìm kiếm chính giữa */}
-                <Search/>
+                <Search />
 
                 {/* action bên phải */}
                 <div className={cx('action')}>
