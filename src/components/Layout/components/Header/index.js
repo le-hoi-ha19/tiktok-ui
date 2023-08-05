@@ -40,7 +40,79 @@ const MENU_ITEMS = [
                 {
                     code: 'vi',
                     title: 'Tiếng việt',
+                },{
+                    code: 'end',
+                    title: 'English',
                 },
+                {
+                    code: 'vi',
+                    title: 'Tiếng việt',
+                },{
+                    code: 'end',
+                    title: 'English',
+                },
+                {
+                    code: 'vi',
+                    title: 'Tiếng việt',
+                },
+                {
+                    code: 'end',
+                    title: 'English',
+                },
+                {
+                    code: 'vi',
+                    title: 'Tiếng việt',
+                },
+                {
+                    code: 'end',
+                    title: 'English',
+                },
+                {
+                    code: 'vi',
+                    title: 'Tiếng việt',
+                },{
+                    code: 'end',
+                    title: 'English',
+                },
+                {
+                    code: 'vi',
+                    title: 'Tiếng việt',
+                },{
+                    code: 'end',
+                    title: 'English',
+                },
+                {
+                    code: 'vi',
+                    title: 'Tiếng việt',
+                },
+                {
+                    code: 'end',
+                    title: 'English',
+                },
+                {
+                    code: 'vi',
+                    title: 'Tiếng việt',
+                },
+                {
+                    code: 'end',
+                    title: 'English',
+                },
+                {
+                    code: 'vi',
+                    title: 'Tiếng việt',
+                },{
+                    code: 'end',
+                    title: 'English',
+                },
+                {
+                    code: 'vi',
+                    title: 'Tiếng việt',
+                },{
+                    code: 'end',
+                    title: 'English',
+                },
+                
+                
             ],
         },
     },
