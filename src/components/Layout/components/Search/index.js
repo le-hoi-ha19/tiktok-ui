@@ -59,51 +59,55 @@ function Search() {
     }
     
     return (
-        <HeadlessTippy
-            interactive
-            // điều kiện hiển thị kết quả tìm kiếm
-            visible={showResult && searchResult.length > 0}
-            // kết quả tìm kiếm
-            render={(attrs) => (
-                <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                    <PopperWrapper>
-                        <h4 className={cx('search-title')}>Accounts</h4>
-                        {/* hiển thị dữ tài khoản lấy từ api */}
-                        {searchResult.map((result) => (
-                            <AccountItem key={result.id} data={result} />
-                        ))}
-                    </PopperWrapper>
+        // dùng thẻ div để fix lỗi tippy
+       <div>
+            <HeadlessTippy
+                interactive
+               
+                // điều kiện hiển thị kết quả tìm kiếm
+                visible={showResult && searchResult.length > 0}
+                // kết quả tìm kiếm
+                render={(attrs) => (
+                    <div className={cx('search-result')} tabIndex="-1" {...attrs}>
+                        <PopperWrapper>
+                            <h4 className={cx('search-title')}>Accounts</h4>
+                            {/* hiển thị dữ tài khoản lấy từ api */}
+                            {searchResult.map((result) => (
+                                <AccountItem key={result.id} data={result} />
+                            ))}
+                        </PopperWrapper>
+                    </div>
+                )}
+                // khi bấm ra ngoài khu vực hiển thị kết quả tìm kiếm
+                onClickOutside={handleHideResult}
+            >
+                <div className={cx('search')}>
+                    <input
+                        ref={inputRef}
+                        value={searchValue}
+                        placeholder="Search accounts and videos"
+                        spellCheck={false}
+                        onChange={handleChange}
+                        // khi focus vào ô input thì hiển thị lại kết quả tìm kiếm
+                        onFocus={() => setShowResult(true)}
+                    />
+                    {
+                        // khi có search mới hiển thị button clear
+                        !!searchValue && !loading && (
+                            <button className={cx('clear')} onClick={handleClear}>
+                                <FontAwesomeIcon icon={faCircleXmark} />
+                            </button>
+                        )
+                    }
+                    {/* nếu loading bằng true thì icon quay */}
+                    {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
+    
+                    <button className={cx('search-btn')} onMouseDown={e =>e.preventDefault()}>
+                        <FontAwesomeIcon icon={faMagnifyingGlass} />
+                    </button>
                 </div>
-            )}
-            // khi bấm ra ngoài khu vực hiển thị kết quả tìm kiếm
-            onClickOutside={handleHideResult}
-        >
-            <div className={cx('search')}>
-                <input
-                    ref={inputRef}
-                    value={searchValue}
-                    placeholder="Search accounts and videos"
-                    spellCheck={false}
-                    onChange={handleChange}
-                    // khi focus vào ô input thì hiển thị lại kết quả tìm kiếm
-                    onFocus={() => setShowResult(true)}
-                />
-                {
-                    // khi có search mới hiển thị button clear
-                    !!searchValue && !loading && (
-                        <button className={cx('clear')} onClick={handleClear}>
-                            <FontAwesomeIcon icon={faCircleXmark} />
-                        </button>
-                    )
-                }
-                {/* nếu loading bằng true thì icon quay */}
-                {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
-
-                <button className={cx('search-btn')} onMouseDown={e =>e.preventDefault()}>
-                    <FontAwesomeIcon icon={faMagnifyingGlass} />
-                </button>
-            </div>
-        </HeadlessTippy>
+            </HeadlessTippy>
+       </div>
     );
 }
 
