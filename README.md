@@ -1,1 +1,4 @@
-Bỏ qua hành vi focus vào ô tìm kiếm khi nhấn submit
+-apiServices -> services
+-src/components/Layout -> -src/layouts
+-routes config
+-Tạo file env, đưa cấu hình baseUrl ra .env.development
