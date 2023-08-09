@@ -1,4 +1,5 @@
--prop type là 1 thư viện dùng để xác nhận coi kiểu dữ liêụ props truyền vào component có truyền đúng hay không
-
--prop type k cần cài đặt, đã cài đặt sẵn trong npm create-react-app
-khi dùng chỉ cần import
+-Search close bị che khi text dài -> OK
+-"Anh Sơn, button của anh có một cái bug là khi dùng primary cùng to= hay href= thì nó ăn cái color = text color trong Global Style, anh có phát hiện hay chưa ạ?" - NDQ IT VN -> OK
+-
+"Phần xử lý cuộn anh copy css thừa nha" - NDQ IT VN -> OK
+-Review lại các components -> OK

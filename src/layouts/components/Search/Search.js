@@ -13,12 +13,12 @@ const cx = classNames.bind(styles);
 function Search() {
     const [searchValue, setSearchValue] = useState('');
     const [searchResult, setSearchResult] = useState([]);
-    const [showResult, setShowResult] = useState(true);
+    const [showResult, setShowResult] = useState(false);
     const [loading, setLoading] = useState(false);
 
-    // khi người dùng ngừng gõ 500 mili giây thì thì giá trị debounced này nó mới được
+    // khi người dùng ngừng gõ 500 mili giây thì thì giá trị debouncedValue này nó mới được
     // update bằng giá trị mới nhất của searchValue
-    const debounced = useDebounce(searchValue, 500);
+    const debouncedValue = useDebounce(searchValue, 500);
     const inputRef = useRef();
     const handleClear = () => {
         // đặt lại giá trị ô input bằng chuỗi rỗng
@@ -35,19 +35,19 @@ function Search() {
     useEffect(() => {
         // nếu giá trị gõ vào ô input là dấu cách cách thì không tìm kiếm:.trim()
         // nếu không gõ vào ô input thì dữ liệu là chuỗi rỗng thì k tìm kiếm
-        if (!debounced.trim()) {
+        if (!debouncedValue.trim()) {
             setSearchResult([]);
             return;
         }
         // hàm gọi api để lấy dữ liêụ
         const fetchApi = async () => {
             setLoading(true);
-            const result = await searchServices.search(debounced);
+            const result = await searchServices.search(debouncedValue);
             setSearchResult(result);
             setLoading(false);
         };
         fetchApi();
-    }, [debounced]);
+    }, [debouncedValue]);
 
     // hàm xử lý không cho gõ dấu cách trong ô input
     const handleChange =(e) =>{
