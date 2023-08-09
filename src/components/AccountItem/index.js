@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames/bind';
 import styles from './AcountItem.module.scss';
@@ -24,6 +25,11 @@ function AccountItem({data}) {
             </div>
         </Link>
     );
+}
+
+// kiểm tra xem prop data có phải là 1 object và data bắt buộc truyền
+AccountItem.propTypes ={
+    data: PropTypes.object.isRequired,
 }
 
 export default AccountItem;
