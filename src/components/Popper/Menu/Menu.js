@@ -35,19 +35,24 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn 
     const handleBack = () => {
         setHistory((prev) => prev.slice(0, prev.length - 1));
     };
+    // hàm hiển thị ra hộp thoại
     const renderResult = (attrs) => {
-        <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
-            <PopperWrapper className={cx('menu-popper')}>
-                {history.length > 1 && <Header title={current.title} onBack={handleBack} />}
-                <div className={cx('menu-body')}> {renderItems()}</div>
-            </PopperWrapper>
-        </div>;
+        // phải có return để trả về đoạn jsx hiển thị ra hộp thoại
+        return (
+            <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
+                <PopperWrapper className={cx('menu-popper')}>
+                    {history.length > 1 && <Header title={current.title} onBack={handleBack} />}
+                    <div className={cx('menu-body')}> {renderItems()}</div>
+                </PopperWrapper>
+            </div>
+        );
     };
     const handleResetMenu = () => {
         setHistory((prev) => prev.slice(0, 1));
     };
     return (
         <Tippy
+          
             interactive
             delay={[0, 700]}
             offset={[12, 8]}

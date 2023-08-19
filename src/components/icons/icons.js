@@ -17,7 +17,7 @@ export const UploadIcon = ({ width = '3.2rem', height = '3.2rem', className }) =
 
 export const MessageIcon = ({ width = '3.2rem', height = '3.2rem', className }) => (
     <svg
-        class={className}
+        className={className}
         width={width}
         height={height}
         viewBox="0 0 48 48"
@@ -33,7 +33,7 @@ export const MessageIcon = ({ width = '3.2rem', height = '3.2rem', className }) 
 );
 export const InboxIcon = ({ width = '3.2rem', height = '3.2rem', className }) => (
     <svg
-        class={className}
+        className={className}
         width={width}
         height={height}
         viewBox="0 0 32 32"
@@ -49,7 +49,14 @@ export const InboxIcon = ({ width = '3.2rem', height = '3.2rem', className }) =>
 );
 
 export const HomeIcon = ({ width = '3.2rem', height = '3.2rem', className }) => (
-    <svg  class={className} width={width} height={height} fill="currentColor" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+    <svg
+        className={className}
+        width={width}
+        height={height}
+        fill="currentColor"
+        viewBox="0 0 48 48"
+        xmlns="http://www.w3.org/2000/svg"
+    >
         <path
             fillRule="evenodd"
             clipRule="evenodd"
@@ -59,7 +66,7 @@ export const HomeIcon = ({ width = '3.2rem', height = '3.2rem', className }) => 
 );
 export const HomeActiveIcon = ({ width = '3.2rem', height = '3.2rem', className }) => (
     <svg
-    class={className}
+        className={className}
         width={width}
         height={height}
         viewBox="0 0 48 48"
@@ -74,7 +81,14 @@ export const HomeActiveIcon = ({ width = '3.2rem', height = '3.2rem', className 
     </svg>
 );
 export const UserGroupIcon = ({ width = '3.2rem', height = '3.2rem', className }) => (
-    <svg   class={className} width={width} height={height} viewBox="0 0 48 48" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <svg
+        className={className}
+        width={width}
+        height={height}
+        viewBox="0 0 48 48"
+        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
+    >
         <path
             fillRule="evenodd"
             clipRule="evenodd"
@@ -94,7 +108,7 @@ export const UserGroupIcon = ({ width = '3.2rem', height = '3.2rem', className }
 );
 export const UserGroupActiveIcon = ({ width = '3.2rem', height = '3.2rem', className }) => (
     <svg
-    class={className}
+        className={className}
         width={width}
         height={height}
         viewBox="0 0 48 48"
@@ -108,7 +122,14 @@ export const UserGroupActiveIcon = ({ width = '3.2rem', height = '3.2rem', class
     </svg>
 );
 export const LiveIcon = ({ width = '3.2rem', height = '3.2rem', className }) => (
-    <svg   class={className} width={width} height={height} viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <svg
+        className={className}
+        width={width}
+        height={height}
+        viewBox="0 0 32 32"
+        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
+    >
         <path
             fillRule="evenodd"
             clipRule="evenodd"
@@ -119,7 +140,7 @@ export const LiveIcon = ({ width = '3.2rem', height = '3.2rem', className }) => 
 );
 export const LiveActiveIcon = ({ width = '3.2rem', height = '3.2rem', className }) => (
     <svg
-    class={className}
+        className={className}
         width={width}
         height={height}
         viewBox="0 0 48 48"
